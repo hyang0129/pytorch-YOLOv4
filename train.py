@@ -529,8 +529,10 @@ def get_args(**kwargs):
     cfg = kwargs
     parser = argparse.ArgumentParser(description='Train the Model on images and target masks',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    # parser.add_argument('-b', '--batch-size', metavar='B', type=int, nargs='?', default=2,
-    #                     help='Batch size', dest='batchsize')
+    parser.add_argument('-b', '--batch-size', metavar='B', type=int, nargs='?', default=2,
+                        help='Batch size', dest='batchsize')
+    parser.add_argument('-s', '--subdivisions', metavar='S', type=int, nargs='?', default=1, help='subdivisions',
+                        dest='subdivisions')
     parser.add_argument('-l', '--learning-rate', metavar='LR', type=float, nargs='?', default=0.001,
                         help='Learning rate', dest='learning_rate')
     parser.add_argument('-f', '--load', dest='load', type=str, default=None,
@@ -554,6 +556,8 @@ def get_args(**kwargs):
         '-keep-checkpoint-max', type=int, default=10,
         help='maximum number of checkpoints to keep. If set 0, all checkpoints will be kept',
         dest='keep_checkpoint_max')
+    parser.add_argument('-epochs', dest='TRAIN_EPOCHS', type=int, default=10, help="number of training epochs")
+
     args = vars(parser.parse_args())
 
     # for k in args.keys():
